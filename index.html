@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple PDF Uploads</title>
+    <link rel="stylesheet" href="sty.css">
+</head>
+<body>
+    <div id="authContainer">
+        <div id="register">
+            <h2>Register</h2>
+            <input type="text" id="regUsername" placeholder="Username">
+            <input type="password" id="regPassword" placeholder="Password">
+            <button onclick="register()">Register</button>
+        </div>
+        
+        <div id="login">
+            <h2>Login</h2>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+    
+    <div id="mainContent" style="display: none;">
+        <h2>Welcome!</h2>
+        <button onclick="logout()">Logout</button>
+    
+
+    <h2>Enter Your Data</h2>
+    <input type="text" id="userInput" placeholder="Enter something">
+    <button onclick="saveData()">Save</button>
+
+    <h3>Saved Data:</h3>
+    <ul id="dataList"></ul>
+
+    <h3>Edit Data:</h3>
+    <input type="text" id="editInput" placeholder="Edit selected data">
+    <button onclick="editData()">Edit</button>
+    <button onclick="cancelEdit()">Cancel Edit</button>
+
+    <!-- File Upload Button -->
+    <h3>Upload PDFs:</h3>
+    <input type="file" id="fileInput" accept="application/pdf" multiple onchange="handleFileUpload()">
+    <p id="fileName"></p>
+
+    <div id="pdfContainer">
+        <h3>Uploaded PDFs:</h3>
+        <ul id="pdfList"></ul>
+    </div>
+    </div>
+    <script src="sty.js"></script>
+</body>
+</html>
