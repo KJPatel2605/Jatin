@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Login Page</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <!-- Logout Button (can be displayed in the dashboard page) -->
+    <div id="dashboard" style="display:none;">
+        <h2>Welcome to the Dashboard</h2>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script>
+        // Handle login form submission
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            var scriptURL = "https://script.google.com/macros/s/AKfycbwbBgzxT11NopIgs78RTmlxF7QrHHgNpp7MVgi53zNkzQOPEjPt31E-2vxjyflFskkL/exec"; // Replace with your actual Google Apps Script URL
+
+            fetch(scriptURL, { method: "POST", body: formData })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Response from script:", data); // Log response to console for debugging
+                if (data.trim() === "success") {
+                    alert("Login Successful!");
+                    window.location.href = "dashboard.html"; // Redirect after login
+                } else {
+                    document.getElementById("error-message").innerText = "Invalid Username or Password!";
+                }
+            })
+            .catch(error => {
+                console.error("Fetch Error:", error);
+                alert("Error connecting to the server!");
+            });
+        });
+
+        // Handle logout
+        document.getElementById("logoutBtn")?.addEventListener("click", function() {
+            // Clear session or token if any (localStorage, sessionStorage, etc.)
+            alert("You have logged out successfully!");
+            window.location.href = "index.html"; // Redirect back to the login page
+        });
+
+        // If user is already logged in, show the dashboard
+        // You can use sessionStorage or localStorage here to check login status
+        if (sessionStorage.getItem("isLoggedIn")) {
+            document.getElementById("dashboard").style.display = "block"; // Show the dashboard
+            document.getElementById("loginForm").style.display = "none"; // Hide login form
+        }
+        sessionStorage.setItem("isLoggedIn", "true");
+
+    </script>
+</body>
+</html>
+

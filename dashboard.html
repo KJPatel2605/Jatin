@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <!-- Navbar for mobile only -->
+    <div class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Enter Data</a></li>
+            <li><a href="#">External content</a></li> <!-- External content link -->
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar for larger screens -->
+    <div class="sidebar">
+        <h2>Welcome</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <h2 class="Data">Enter Data</h2>
+            <div class="Data-1">
+                <li><a href="#">Route</a></li>
+                <li><a href="#">Bank Monthly Earning</a></li>
+                <li><a href="#">Monthly Earning </a></li>
+                <li><a href="#">PDF Monthly Earning </a></li>
+            </div>
+            <h2 class="Data">Data</h2>
+            <li><a href="#">D Route</a></li>
+            <li><a href="#">D Bank Monthly Earning</a></li>
+            <li><a href="#">D Monthly Earning </a></li>
+            <li><a href="#">D PDF Monthly Earning </a></li>
+            <button id="logoutBtn">Logout</button>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to the Website</h1>
+        <p>Here is the content of the page.</p>
+    </div>
+
+    <script>
+        // Check if the user is logged in by checking sessionStorage
+        if (!sessionStorage.getItem("isLoggedIn")) {
+            window.location.href = "index.html";
+        }
+
+        // Handle logout
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            sessionStorage.removeItem("isLoggedIn");
+            alert("You have logged out successfully!");
+            window.location.href = "index.html";
+        });
+
+        // Handle menu toggle for mobile (if sidebar is used for toggle)
+        document.getElementById("menuToggle").addEventListener("click", function() {
+            document.querySelector(".sidebar").classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
